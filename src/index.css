@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 240 20% 98%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -13,16 +13,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 255 85% 65%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 260 97% 92%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 20 100% 86%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,7 +32,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -97,5 +97,58 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .card-pastel {
+    @apply bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden;
+  }
+  
+  .btn-pastel {
+    @apply px-6 py-2 rounded-full font-medium transition-all duration-300 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-pastel-primary {
+    @apply btn-pastel bg-primary text-white hover:opacity-90;
+  }
+  
+  .btn-pastel-secondary {
+    @apply btn-pastel bg-pastel-purple text-gray-800 hover:opacity-90;
+  }
+  
+  .soft-shadow {
+    @apply shadow-[0_5px_15px_rgba(0,0,0,0.05)];
+  }
+  
+  .reel-container {
+    @apply snap-y snap-mandatory overflow-y-scroll scrollbar-hide;
+    height: calc(100vh - 5rem);
+  }
+  
+  .reel-item {
+    @apply snap-start snap-always h-full w-full flex flex-col items-center justify-center;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .glassmorphism {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-sm;
+  }
+  
+  .pet-assistant {
+    @apply fixed bottom-5 right-5 animate-float;
+  }
+  
+  .chatbot-bubble {
+    @apply fixed bottom-20 right-5 p-4 rounded-2xl max-w-xs shadow-lg;
   }
 }

@@ -1,4 +1,53 @@
-# Welcome to your Lovable project
+# KSIT Hackathon - Learning & Productivity Platform
+
+A modern, reel-style learning platform for students combining the best of Instagram Reels and Notion.
+
+## Project Overview
+
+KSIT Hackathon is a responsive web application designed to enhance student learning and productivity through interactive, bite-sized content delivered in a familiar, engaging format. The platform offers:
+
+- **YouTube clip creation tools** with auto-captioning and highlighting
+- **TikTok/Instagram style reels** for educational content
+- **Productivity features** like Hyperfocus Pomodoro and meditation tools
+- **AI-powered recommendations** and learning path tracking
+- **Voice interactions** for comments and notes
+
+## Key Features
+
+### 🔍 Explore Page
+- YouTube reel creator with auto-caption and highlight tagging
+- Search filters by speed, format, and mood
+- AI recommendation sections
+
+### 📱 Reels Page
+- Full-screen, scrollable reels with insights and Q&A features
+- Voice note commenting with AI transcription
+- Sidebar pet assistant for summaries and tips
+- Ghost Mode toggle for distraction-free viewing
+
+### ⏱️ Dashboard
+- Hyperfocus Pomodoro with custom time splits
+- Power Nap timer with nature alarms
+- Meditation zone with visual breathing guides
+- Stress-relief activities and micro-win tracking
+
+### 👤 Profile
+- Streak and progress tracking
+- Privacy and notification settings
+- Offline content library
+- Encouragement board for affirmations
+
+### 🤖 Floating Assistant
+- Context-aware tips and encouragement
+- Available on every page
+
+## Technologies
+
+Built with:
+- React
+- TypeScript
+- Tailwind CSS
+- Shadcn UI components
 
 ## Project info
 
