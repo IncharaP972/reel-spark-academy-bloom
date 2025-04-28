@@ -1,14 +1,12 @@
-
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Lightbulb, HelpCircle, Heart, Bookmark, MessageCircle, Volume2, VolumeX, ChevronUp, ChevronDown } from "lucide-react";
 
 export default function Reels() {
   const [currentReel, setCurrentReel] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [ghostMode, setGhostMode] = useState(false);
-  const reelsContainerRef = useRef<HTMLDivElement>(null);
-  
-  const dummyReels = [
+  const [allReels, setAllReels] = useState([
+    // Default dummy reels
     {
       id: 1,
       title: "Data Structures Simplified",
@@ -33,9 +31,18 @@ export default function Reels() {
       videoUrl: "#",
       thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
     }
-  ];
+  ]);
+  const reelsContainerRef = useRef<HTMLDivElement>(null);
   
-  // Handle scroll with snapping
+  // Load created reels from localStorage
+  useEffect(() => {
+    const createdReels = JSON.parse(localStorage.getItem('createdReels') || '[]');
+    if (createdReels.length > 0) {
+      setAllReels(prevReels => [...createdReels, ...prevReels]);
+    }
+  }, []);
+
+  // Function to scroll to a specific reel
   const scrollToReel = (index: number) => {
     if (reelsContainerRef.current) {
       const height = reelsContainerRef.current.clientHeight;
@@ -47,22 +54,31 @@ export default function Reels() {
     }
   };
 
+  // Update the reels container to use allReels instead of dummyReels
   return (
     <div className="h-full flex">
-      {/* Main Reels Area */}
-      <div 
-        ref={reelsContainerRef}
-        className="reel-container flex-1"
-      >
-        {dummyReels.map((reel, index) => (
+      <div ref={reelsContainerRef} className="reel-container flex-1">
+        {allReels.map((reel, index) => (
           <div key={reel.id} className="reel-item relative">
             {/* Video/Thumbnail Background */}
             <div className="absolute inset-0 overflow-hidden">
-              <img 
-                src={reel.thumbnail} 
-                alt={reel.title}
-                className="w-full h-full object-cover"
-              />
+              {reel.videoUrl !== "#" ? (
+                <video
+                  src={reel.videoUrl}
+                  poster={reel.thumbnail}
+                  className="w-full h-full object-cover"
+                  loop
+                  muted={isMuted}
+                  autoPlay
+                  playsInline
+                />
+              ) : (
+                <img 
+                  src={reel.thumbnail} 
+                  alt={reel.title}
+                  className="w-full h-full object-cover"
+                />
+              )}
               <div className="absolute inset-0 bg-black/30"></div>
             </div>
             
@@ -125,7 +141,7 @@ export default function Reels() {
               </button>
             )}
             
-            {index < dummyReels.length - 1 && (
+            {index < allReels.length - 1 && (
               <button 
                 className="absolute top-1/2 right-4 z-20 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
                 onClick={() => scrollToReel(index + 1)}
@@ -156,7 +172,7 @@ export default function Reels() {
         <div className="mb-6">
           <h4 className="font-medium mb-2">Quick Summary</h4>
           <p className="text-sm text-gray-600">
-            This reel covers the fundamentals of {dummyReels[currentReel].title}. 
+            This reel covers the fundamentals of {allReels[currentReel]?.title}. 
             The key concepts explained include organization, implementation, and optimization.
           </p>
         </div>
